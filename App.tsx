@@ -10,7 +10,7 @@ function App(): JSX.Element {
 
   return (
     <SafeAreaView>
-      <Text preset='headingLarge' style={{color: 'red', fontFamily: 'Satoshi-Black'}}>
+      <Text bold italic preset='headingLarge' style={{color: 'red'}}>
         CoffStack
       </Text>
     </SafeAreaView>
