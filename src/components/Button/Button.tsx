@@ -1,31 +1,49 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
-import { Text } from '../Text/Text';
-import {useTheme} from '@shopify/restyle';
+import {TouchableOpacity, TouchableOpacityComponent} from 'react-native';
+import {Text} from '../Text/Text';
 
-import { Theme } from '../../theme/theme';
+import {ActivityIndicator} from '../ActivityIndicator/ActivityIndicator';
 
-import {Box} from '../Box/Box';
-interface ButtonProps {
-    title: string,
+import {TouchableOpacityBox, TouchableOpacityBoxProps} from '../Box/Box';
+import { buttonPresets } from './ButtonPresets';
+
+export type ButtonPreset = 'primary' | 'outline';
+
+interface ButtonProps extends TouchableOpacityBoxProps {
+  title: string;
+  loading?: boolean;
+  preset?: ButtonPreset;
+  disabled?: boolean,
 }
 
-export function Button({title} : ButtonProps){
+export function Button({
+  title,
+  loading,
+  preset = 'primary',
+  disabled,
+  ...TouchableOpacityBoxProps
+}: ButtonProps) {
 
-    const {colors} = useTheme<Theme>();
+  const buttonPreset = buttonPresets[preset][disabled ? 'disabled' : 'default'];
 
-    return(
-        <Box style={{
-            paddingHorizontal: 20,
-            paddingVertical: 14,
-            backgroundColor: colors.carrotSecondary,
-            alignItems: 'center',
-            borderRadius: 16,
-
-        }}>
-            <Text preset='paragraphMedium' style={{color: colors.grayWhite}}>
-                {title}
-            </Text>
-        </Box>
-    );
-};
+  return (
+    <TouchableOpacityBox
+      height={50}
+      alignItems="center"
+      justifyContent="center"
+      borderRadius="s16"
+      paddingHorizontal="s20"
+      disabled={disabled || loading}
+      {...buttonPreset.container}
+      {...TouchableOpacityBoxProps}
+      >
+      {loading ? (
+        <ActivityIndicator color={buttonPreset.content}/>
+      ) : (
+        <Text preset="paragraphMedium" bold color={buttonPreset.content} >
+          {title}
+        </Text>
+      )}
+    </TouchableOpacityBox>
+  );
+}

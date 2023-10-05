@@ -13,11 +13,13 @@ function App(): JSX.Element {
   
   return (
     <ThemeProvider theme={theme}>
-      <SafeAreaView>
-      <Text bold italic preset='headingLarge' style={{color: 'red'}}>
+      <SafeAreaView style={{paddingHorizontal: 24}}>
+      <Text preset="headingLarge" italic>
         CoffStack
       </Text>
-      <Button title='Entrar'/>
+      <Button disabled title='Entrar' preset='primary' marginBottom='s12'/>
+      <Button disabled title='Entrar' preset='outline'/>
+
     </SafeAreaView>
     </ThemeProvider>
   );
