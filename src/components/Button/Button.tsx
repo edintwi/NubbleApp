@@ -4,6 +4,8 @@ import { Text } from '../Text/Text';
 import {useTheme} from '@shopify/restyle';
 
 import { Theme } from '../../theme/theme';
+
+import {Box} from '../Box/Box';
 interface ButtonProps {
     title: string,
 }
@@ -11,8 +13,9 @@ interface ButtonProps {
 export function Button({title} : ButtonProps){
 
     const {colors} = useTheme<Theme>();
+
     return(
-        <TouchableOpacity style={{
+        <Box style={{
             paddingHorizontal: 20,
             paddingVertical: 14,
             backgroundColor: colors.carrotSecondary,
@@ -23,6 +26,6 @@ export function Button({title} : ButtonProps){
             <Text preset='paragraphMedium' style={{color: colors.grayWhite}}>
                 {title}
             </Text>
-        </TouchableOpacity>
+        </Box>
     );
 };
