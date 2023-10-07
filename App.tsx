@@ -7,7 +7,11 @@ import {
 import { Text } from './src/components/Text/Text';
 import { Button } from './src/components/Button/Button';
 import { ThemeProvider } from '@shopify/restyle';
-import {theme} from './src/theme/theme'
+import {theme} from './src/theme/theme';
+
+import { Icon } from './src/components/Icon/Icon';
+import { Box } from './src/components/Box/Box';
+
 
 function App(): JSX.Element {
   
@@ -17,8 +21,10 @@ function App(): JSX.Element {
       <Text preset="headingLarge" italic>
         CoffStack
       </Text>
-      <Button disabled title='Entrar' preset='primary' marginBottom='s12'/>
-      <Button disabled title='Entrar' preset='outline'/>
+      <Box flexDirection='row' gap='s12'>
+        <Icon name='eyeOn' color='error'/>
+        <Icon name='eyeOff' color='buttonPrimary'/>
+      </Box>
 
     </SafeAreaView>
     </ThemeProvider>
