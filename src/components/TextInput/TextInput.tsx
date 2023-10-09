@@ -9,7 +9,7 @@ import {
   TextStyle,
 } from 'react-native';
 import {Icon} from '../Icon/Icon';
-import {useAppTheme} from '../../Hooks/useAppTheme';
+import {useAppTheme} from '../../hooks/useAppTheme';
 
 interface TextInputProps extends RNTextInputProps {
   label: string;
