@@ -1,49 +1,50 @@
 import React from 'react';
-import {
-  Text as RNText,
-  TextProps as RNTextProps,
-  TextStyle,
-} from 'react-native';
-
+import {TextStyle} from 'react-native';
 import {createText} from '@shopify/restyle';
-import { Theme } from '../../theme/theme';
-
-type SRTextProps = React.ComponentProps<typeof SRText>;
+import {Theme} from '../../theme/theme';
 
 const SRText = createText<Theme>();
+type SRTextProps = React.ComponentProps<typeof SRText>;
 
 interface TextProps extends SRTextProps {
   preset?: TextVariants;
   bold?: boolean;
-  semibold?: boolean;
   italic?: boolean;
+  semiBold?: boolean;
 }
-
 export function Text({
   children,
   preset = 'paragraphMedium',
-  style,
   bold,
   italic,
-  semibold,
-  ...SRTextProps
+  semiBold,
+  style,
+  ...sRTextProps
 }: TextProps) {
-
-  const fontFamily = getFontFamily(preset, bold, italic, semibold);
-
+  const fontFamily = getFontFamily(preset, bold, italic, semiBold);
   return (
-    <SRText color='backgroundContranst' style={[$fontSizes[preset], {fontFamily}, style]} {...SRTextProps}>
+    <SRText
+      color="backgroundContranst"
+      style={[$fontSizes[preset], {fontFamily}, style]}
+      {...sRTextProps}>
       {children}
     </SRText>
   );
 }
 
-function getFontFamily(preset: TextVariants, bold?: boolean, semibold?: boolean, italic?: boolean) {
-  
-  if(preset === 'headingLarge' || preset === `headingMedium` || preset === `headingSmall`){
-    return italic ?  $fontFamily.boldItalic : $fontFamily.bold;
+function getFontFamily(
+  preset: TextVariants,
+  bold?: boolean,
+  italic?: boolean,
+  semiBold?: boolean,
+) {
+  if (
+    preset === 'headingLarge' ||
+    preset === 'headingMedium' ||
+    preset === 'headingSmall'
+  ) {
+    return italic ? $fontFamily.boldItalic : $fontFamily.bold;
   }
-  
   switch (true) {
     case bold && italic:
       return $fontFamily.boldItalic;
@@ -51,9 +52,9 @@ function getFontFamily(preset: TextVariants, bold?: boolean, semibold?: boolean,
       return $fontFamily.bold;
     case italic:
       return $fontFamily.italic;
-    case semibold && italic:
+    case semiBold && italic:
       return $fontFamily.mediumItalic;
-    case semibold:
+    case semiBold:
       return $fontFamily.medium;
     default:
       return $fontFamily.regular;

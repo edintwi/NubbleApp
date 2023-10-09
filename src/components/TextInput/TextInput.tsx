@@ -11,7 +11,7 @@ import {
 import {Icon} from '../Icon/Icon';
 import {useAppTheme} from '../../hooks/useAppTheme';
 
-interface TextInputProps extends RNTextInputProps {
+export interface TextInputProps extends RNTextInputProps {
   label: string;
   errorMsg?: string;
   RightComponent?: React.ReactElement;
