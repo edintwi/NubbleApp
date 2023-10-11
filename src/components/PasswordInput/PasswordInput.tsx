@@ -14,6 +14,7 @@ export function PasswordInput(props: PasswordInputProps) {
   return (
     <TextInput
       secureTextEntry={isSecureTextEntry}
+      {...props}
       RightComponent={
         <Icon
           onPress={toggleSecureTextEntry}
@@ -21,7 +22,6 @@ export function PasswordInput(props: PasswordInputProps) {
           color="gray2"
         />
       }
-      {...props}
     />
   );
 }
