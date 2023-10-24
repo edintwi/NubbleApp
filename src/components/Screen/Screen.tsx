@@ -1,12 +1,10 @@
 import React from 'react';
-import {Box, TouchableOpacityBox} from '../Box/Box';
-import {useAppTheme} from '../../hooks/useAppTheme';
-import {useAppSafeArea} from '../../hooks/useAppSafeArea';
-import {Icon} from '../Icon/Icon';
-import {Text} from '../Text/Text';
-import {KeyboardAvoidingView, Platform, ScrollView} from 'react-native';
+import {KeyboardAvoidingView, Platform} from 'react-native';
+import {Box, TouchableOpacityBox, Icon, Text} from '@components';
+import {useAppTheme, useAppSafeArea} from '@hooks';
+
 import {ScrollViewContainer, ViewContainer} from './components/ScreenContainer';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 interface ScreenProps {
   canGoback?: boolean;
@@ -35,7 +33,10 @@ export function Screen({
           paddingHorizontal="s24"
           style={{paddingTop: top, paddingBottom: bottom}}>
           {canGoback && (
-            <TouchableOpacityBox onPress={() => navigation.goBack()} flexDirection="row" mb="s24">
+            <TouchableOpacityBox
+              onPress={() => navigation.goBack()}
+              flexDirection="row"
+              mb="s24">
               <Icon name="arrowLeft" color="primary" />
               <Text semiBold preset="paragraphMedium" ml="s8">
                 Voltar

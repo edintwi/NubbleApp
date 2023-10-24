@@ -1,24 +1,24 @@
 import React from 'react';
+import {Alert} from 'react-native';
+import {
+  Button,
+  Screen,
+  Text,
+  FormTextInput,
+  FormPasswordInput,
+} from '@components';
 
-import {TextInput} from '../../../components/TextInput/TextInput';
-import {Button} from '../../../components/Button/Button';
-import {Screen} from '../../../components/Screen/Screen';
-import {PasswordInput} from '../../../components/PasswordInput/PasswordInput';
-import { Text } from '../../../components/Text/Text';
-import { RootStackPraramList } from '../../../routes/Routes';
+import {RootStackPraramList} from '@routes';
 import {StackScreenProps} from '@react-navigation/stack';
 
-import {useForm, Controller}from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Alert } from 'react-native';
-import { FormTextInput } from '../../../components/Form/FormTextInput';
-import { FormPasswordInput } from '../../../components/Form/FormPasswordInput';
-import { LoginSchema, loginSchema } from './loginSchema';
+import {useForm} from 'react-hook-form';
+import {zodResolver} from '@hookform/resolvers/zod';
+
+import {LoginSchema, loginSchema} from './loginSchema';
 
 type ScreenProps = StackScreenProps<RootStackPraramList, 'LoginScreen'>;
 
-export function LoginScreen({navigation} : ScreenProps) {
-  
+export function LoginScreen({navigation}: ScreenProps) {
   const {control, formState, handleSubmit} = useForm<LoginSchema>({
     defaultValues: {
       email: '',
@@ -26,10 +26,9 @@ export function LoginScreen({navigation} : ScreenProps) {
     },
     resolver: zodResolver(loginSchema),
     mode: 'onChange',
-
   });
 
-  function submitForm({email, password} : LoginSchema){
+  function submitForm({email, password}: LoginSchema) {
     Alert.alert(email, password);
   }
   function navigateToSignUpScreen() {
@@ -48,24 +47,33 @@ export function LoginScreen({navigation} : ScreenProps) {
       <Text preset="paragraphLarge" mb="s40">
         Digite seu e-mail e senha para entrar
       </Text>
-      <FormTextInput 
+      <FormTextInput
         control={control}
-        name='email'
+        name="email"
         boxProps={{mb: 's20'}}
         label="E-mail"
         placeholder="Digite seu e-mail"
       />
       <FormPasswordInput
         control={control}
-        name='password'
+        name="password"
         label="Senha"
         placeholder="Digite sua senha"
         boxProps={{mb: 's10'}}
       />
-      <Text color="primary" preset="paragraphSmall" bold onPress={navigateToForgotPasswordScreen}>
+      <Text
+        color="primary"
+        preset="paragraphSmall"
+        bold
+        onPress={navigateToForgotPasswordScreen}>
         Esqueci minha senha
       </Text>
-      <Button disabled={!formState.isValid}  marginTop="s48" title="Entrar" onPress={handleSubmit(submitForm)} />
+      <Button
+        disabled={!formState.isValid}
+        marginTop="s48"
+        title="Entrar"
+        onPress={handleSubmit(submitForm)}
+      />
       <Button
         preset="outline"
         marginTop="s12"

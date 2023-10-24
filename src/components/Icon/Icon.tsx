@@ -1,9 +1,9 @@
 import React from 'react';
 import { EyeOnIcon } from '../../assets/icons/EyeOnIcon';
 import { EyeOffIcon } from '../../assets/icons/EyeOffIcon';
-import { Theme, ThemeColors } from '../../theme/theme';
+import { Theme, ThemeColors } from '@theme';
 
-import { useAppTheme } from '../../hooks/useAppTheme';
+import { useAppTheme } from '@hooks';
 import { ArrowLeftIcon } from '../../assets/icons/ArrowLeftIcon';
 import { ArrowRightIcon } from '../../assets/icons/ArrowRightIcon';
 import { BellIcon } from '../../assets/icons/BellIcon';

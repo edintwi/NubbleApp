@@ -1,25 +1,23 @@
 import React from 'react';
 
-import {Screen} from '../../../components/Screen/Screen';
-import {Text} from '../../../components/Text/Text';
-import {TextInput} from '../../../components/TextInput/TextInput';
+import {
+  Screen,
+  Text,
+  Button,
+  FormTextInput,
+  FormPasswordInput,
+} from '@components';
 
-import {Button} from '../../../components/Button/Button';
-import {PasswordInput} from '../../../components/PasswordInput/PasswordInput';
-
-import {RootStackPraramList} from '../../../routes/Routes';
+import {RootStackPraramList} from '@routes';
 import {StackScreenProps} from '@react-navigation/stack';
 
-import {useResetNavigationSucess} from '../../../hooks/useResetNavigationSucess';
-import {useForm, Controller} from 'react-hook-form';
-import { FormTextInput } from '../../../components/Form/FormTextInput';
-import { FormPasswordInput } from '../../../components/Form/FormPasswordInput';
+import {useResetNavigationSucess} from '@hooks';
+import {useForm} from 'react-hook-form';
 
 import {SignUpSchema, signUpSchema} from './signUpSchema';
 import {zodResolver} from '@hookform/resolvers/zod';
 
 type ScreenProps = StackScreenProps<RootStackPraramList, 'SignUpScreen'>;
-
 
 export function SignUpScreen({navigation}: ScreenProps) {
   const {control, formState, handleSubmit} = useForm<SignUpSchema>({
@@ -36,7 +34,6 @@ export function SignUpScreen({navigation}: ScreenProps) {
   const {reset} = useResetNavigationSucess();
 
   function submitForm(formValues: SignUpSchema) {
-    
     reset({
       title: 'Sua conta foi criada com sucesso!',
       description: 'Agora é so fazer login na nossa plataforma',

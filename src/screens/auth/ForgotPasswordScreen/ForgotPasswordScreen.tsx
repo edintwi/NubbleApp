@@ -1,27 +1,26 @@
 import React from 'react';
+import {Text, Screen, Button, FormTextInput} from '@components';
 
-import {Screen} from '../../../components/Screen/Screen';
-import {Text} from '../../../components/Text/Text';
-import {TextInput} from '../../../components/TextInput/TextInput';
-import {Button} from '../../../components/Button/Button';
-import {RootStackPraramList} from '../../../routes/Routes';
+import {RootStackPraramList} from '@routes';
 import {StackScreenProps} from '@react-navigation/stack';
-import { FormTextInput } from '../../../components/Form/FormTextInput';
 import {useForm} from 'react-hook-form';
-import {zodResolver} from '@hookform/resolvers/zod'
+import {zodResolver} from '@hookform/resolvers/zod';
 
-import {useResetNavigationSucess} from '../../../hooks/useResetNavigationSucess';
-import { ForgotPasswordSchema, forgotPasswordSchema } from './forgotPasswordSchema';
+import { useResetNavigationSucess } from '@hooks';
+import {
+  ForgotPasswordSchema,
+  forgotPasswordSchema,
+} from './forgotPasswordSchema';
+
 type ScreenProps = StackScreenProps<
   RootStackPraramList,
   'ForgotPasswordScreen'
 >;
 
 export function ForgotPasswordScreen({navigation}: ScreenProps) {
-
   const {control, formState, handleSubmit} = useForm<ForgotPasswordSchema>({
     defaultValues: {
-      email: ''
+      email: '',
     },
     resolver: zodResolver(forgotPasswordSchema),
     mode: 'onChange',
@@ -52,10 +51,16 @@ export function ForgotPasswordScreen({navigation}: ScreenProps) {
       </Text>
       <FormTextInput
         control={control}
-        name='email'
-        label="E-mail" 
-        placeholder="Digite seu e-mail" />
-      <Button title="Recuperar senha" onPress={handleSubmit(submitForm)} mt="s48" />
+        name="email"
+        label="E-mail"
+        placeholder="Digite seu e-mail"
+      />
+      <Button
+        title="Recuperar senha"
+        onPress={handleSubmit(submitForm)}
+        mt="s48"
+        disabled={!formState.isValid}
+      />
     </Screen>
   );
 }
