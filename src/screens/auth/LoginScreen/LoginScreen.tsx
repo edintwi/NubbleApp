@@ -1,5 +1,10 @@
 import React from 'react';
 import {Alert} from 'react-native';
+
+import {zodResolver} from '@hookform/resolvers/zod';
+import {StackScreenProps} from '@react-navigation/stack';
+import {useForm} from 'react-hook-form';
+
 import {
   Button,
   Screen,
@@ -7,12 +12,7 @@ import {
   FormTextInput,
   FormPasswordInput,
 } from '@components';
-
 import {RootStackPraramList} from '@routes';
-import {StackScreenProps} from '@react-navigation/stack';
-
-import {useForm} from 'react-hook-form';
-import {zodResolver} from '@hookform/resolvers/zod';
 
 import {LoginSchema, loginSchema} from './loginSchema';
 
