@@ -1,4 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
+
+import {zodResolver} from '@hookform/resolvers/zod';
+import {StackScreenProps} from '@react-navigation/stack';
+import {useForm} from 'react-hook-form';
 
 import {
   Screen,
@@ -7,15 +12,10 @@ import {
   FormTextInput,
   FormPasswordInput,
 } from '@components';
-
-import {RootStackPraramList} from '@routes';
-import {StackScreenProps} from '@react-navigation/stack';
-
 import {useResetNavigationSucess} from '@hooks';
-import {useForm} from 'react-hook-form';
+import {RootStackPraramList} from '@routes';
 
 import {SignUpSchema, signUpSchema} from './signUpSchema';
-import {zodResolver} from '@hookform/resolvers/zod';
 
 type ScreenProps = StackScreenProps<RootStackPraramList, 'SignUpScreen'>;
 

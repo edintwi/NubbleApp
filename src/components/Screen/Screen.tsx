@@ -1,10 +1,12 @@
 import React from 'react';
 import {KeyboardAvoidingView, Platform} from 'react-native';
+
+import {useNavigation} from '@react-navigation/native';
+
 import {Box, TouchableOpacityBox, Icon, Text} from '@components';
 import {useAppTheme, useAppSafeArea} from '@hooks';
 
 import {ScrollViewContainer, ViewContainer} from './components/ScreenContainer';
-import {useNavigation} from '@react-navigation/native';
 
 interface ScreenProps {
   canGoback?: boolean;
@@ -26,6 +28,7 @@ export function Screen({
 
   return (
     <KeyboardAvoidingView
+      // eslint-disable-next-line react-native/no-inline-styles
       style={{flex: 1}}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <Container backgroundColor={colors.background}>

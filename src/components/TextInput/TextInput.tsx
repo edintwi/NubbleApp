@@ -1,8 +1,5 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 import React, {useRef} from 'react';
-
-import {$fontFamily, $fontSizes, Text} from '../Text/Text';
-import {Box, BoxProps} from '@components';
-
 import {
   Pressable,
   TextInput as RNTextInput,
@@ -10,13 +7,16 @@ import {
   TextStyle,
 } from 'react-native';
 
+import {Box, BoxProps} from '@components';
 import {useAppTheme} from '@hooks';
+
+import {$fontFamily, $fontSizes, Text} from '../Text/Text';
 
 export interface TextInputProps extends RNTextInputProps {
   label: string;
   errorMsg?: string;
   RightComponent?: React.ReactElement;
-  boxProps?: BoxProps
+  boxProps?: BoxProps;
 }
 export function TextInput({
   label,
@@ -41,34 +41,33 @@ export function TextInput({
   };
 
   return (
-    <Box {...boxProps} >
-        <Pressable onPress={focusInput}>
-      <Box>
-        <Text preset="paragraphMedium" mb="s4">
-          {label}
-        </Text>
-        <Box {...$textInputContainer}>
-          <RNTextInput
-            ref={inputRef}
-            placeholderTextColor={colors.gray2}
-            {...RNTextInputProps}
-            style={{...$textInputStyle}}
-          />
-          {RightComponent && (
-            <Box ml="s16" justifyContent="center">
-              {RightComponent}
-            </Box>
+    <Box {...boxProps}>
+      <Pressable onPress={focusInput}>
+        <Box>
+          <Text preset="paragraphMedium" mb="s4">
+            {label}
+          </Text>
+          <Box {...$textInputContainer}>
+            <RNTextInput
+              ref={inputRef}
+              placeholderTextColor={colors.gray2}
+              {...RNTextInputProps}
+              style={{...$textInputStyle}}
+            />
+            {RightComponent && (
+              <Box ml="s16" justifyContent="center">
+                {RightComponent}
+              </Box>
+            )}
+          </Box>
+          {errorMsg && (
+            <Text color="error" preset="paragraphSmall" bold>
+              {errorMsg}
+            </Text>
           )}
         </Box>
-        {errorMsg && (
-          <Text color="error" preset="paragraphSmall" bold>
-            {errorMsg}
-          </Text>
-        )}
-      </Box>
-    </Pressable>
+      </Pressable>
     </Box>
-    
   );
 }
 

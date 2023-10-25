@@ -1,12 +1,13 @@
 import React from 'react';
-import {Text, Screen, Button, FormTextInput} from '@components';
 
-import {RootStackPraramList} from '@routes';
+import {zodResolver} from '@hookform/resolvers/zod';
 import {StackScreenProps} from '@react-navigation/stack';
 import {useForm} from 'react-hook-form';
-import {zodResolver} from '@hookform/resolvers/zod';
 
-import { useResetNavigationSucess } from '@hooks';
+import {Text, Screen, Button, FormTextInput} from '@components';
+import {useResetNavigationSucess} from '@hooks';
+import {RootStackPraramList} from '@routes';
+
 import {
   ForgotPasswordSchema,
   forgotPasswordSchema,
@@ -17,6 +18,7 @@ type ScreenProps = StackScreenProps<
   'ForgotPasswordScreen'
 >;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function ForgotPasswordScreen({navigation}: ScreenProps) {
   const {control, formState, handleSubmit} = useForm<ForgotPasswordSchema>({
     defaultValues: {
@@ -33,7 +35,8 @@ export function ForgotPasswordScreen({navigation}: ScreenProps) {
 
     reset({
       title: `Enviamos as ${'\n'}instruções para seu ${'\n'}e-mail`,
-      description: `Clique no link enviado no seu  e-mail para recuperar sua senha`,
+      description:
+        'Clique no link enviado no seu  e-mail para recuperar sua senha',
       icon: {
         name: 'messageRound',
         color: 'greenPrimary',

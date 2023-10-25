@@ -1,23 +1,24 @@
-import { useNavigation } from "@react-navigation/native";
-import { RootStackPraramList } from "../routes/Routes";
+import {useNavigation} from '@react-navigation/native';
 
-export function useResetNavigationSucess(){
-    const navigation = useNavigation();
+import {RootStackPraramList} from '../routes/Routes';
 
-    function reset(params: RootStackPraramList['SucessScreen'] ){
-        navigation.reset({
-            index: 1,
-            routes: [
-              {
-               name: 'LoginScreen',
-              },
-              {
-                name: 'SucessScreen',
-                params,
-              }
-            ],
-          });
-    }
+export function useResetNavigationSucess() {
+  const navigation = useNavigation();
 
-    return {reset};
-};
+  function reset(params: RootStackPraramList['SucessScreen']) {
+    navigation.reset({
+      index: 1,
+      routes: [
+        {
+          name: 'LoginScreen',
+        },
+        {
+          name: 'SucessScreen',
+          params,
+        },
+      ],
+    });
+  }
+
+  return {reset};
+}

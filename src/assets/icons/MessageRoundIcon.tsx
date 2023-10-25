@@ -1,19 +1,17 @@
 import React from 'react';
-import {Svg, Path, Circle} from 'react-native-svg';
-import {IconBase} from '../../components/Icon/Icon';
 
+import {Svg, Path, Circle} from 'react-native-svg';
+
+import {IconBase} from '../../components/Icon/Icon';
 import {pallete} from '../../theme/theme';
 
 export function MessageRoundIcon({
   size = 48,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   color = pallete.greenPrimary,
 }: IconBase) {
   return (
-    <Svg
-      width={size}
-      height={size}
-      viewBox="0 0 48 48"
-      fill="none">
+    <Svg width={size} height={size} viewBox="0 0 48 48" fill="none">
       <Circle cx="24" cy="24" r="24" fill="#074C4E" />
       <Path
         fillRule="evenodd"

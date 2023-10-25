@@ -1,16 +1,16 @@
 import React from 'react';
+
 import {Svg, Path, Circle} from 'react-native-svg';
+
 import {IconBase} from '../../components/Icon/Icon';
+import {pallete} from '../../theme/theme';
 
-import { pallete } from '../../theme/theme';
-
-export function CheckRoundIcon({size = 48, color = pallete.greenSuccess}: IconBase) {
+export function CheckRoundIcon({
+  size = 48,
+  color = pallete.greenSuccess,
+}: IconBase) {
   return (
-    <Svg
-      width={size}
-      height={size}
-      viewBox="0 0 48 48"
-      fill="none">
+    <Svg width={size} height={size} viewBox="0 0 48 48" fill="none">
       <Circle cx="24" cy="24" r="24" fill={color} />
       <Path
         fillRule="evenodd"

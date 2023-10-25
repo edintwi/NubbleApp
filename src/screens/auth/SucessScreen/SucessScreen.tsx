@@ -1,7 +1,8 @@
 import React from 'react';
-import {Icon, Box, Text, Button, Screen} from '@components';
 
 import {StackScreenProps} from '@react-navigation/stack';
+
+import {Icon, Text, Button, Screen} from '@components';
 import {RootStackPraramList} from '@routes';
 
 type ScreenProps = StackScreenProps<RootStackPraramList, 'SucessScreen'>;
