@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 
 import {zodResolver} from '@hookform/resolvers/zod';
-import {StackScreenProps} from '@react-navigation/stack';
 import {useForm} from 'react-hook-form';
 
 import {
@@ -13,13 +11,12 @@ import {
   FormPasswordInput,
 } from '@components';
 import {useResetNavigationSucess} from '@hooks';
-import {RootStackPraramList} from '@routes';
+import {AuthScreenProps} from '@routes';
 
 import {SignUpSchema, signUpSchema} from './signUpSchema';
 
-type ScreenProps = StackScreenProps<RootStackPraramList, 'SignUpScreen'>;
-
-export function SignUpScreen({navigation}: ScreenProps) {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
   const {control, formState, handleSubmit} = useForm<SignUpSchema>({
     defaultValues: {
       userName: '',
@@ -33,6 +30,7 @@ export function SignUpScreen({navigation}: ScreenProps) {
 
   const {reset} = useResetNavigationSucess();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function submitForm(formValues: SignUpSchema) {
     reset({
       title: 'Sua conta foi criada com sucesso!',
