@@ -13,6 +13,7 @@ export function PostImage({imageURL}: Props) {
         width: Dimensions.get('screen').width,
         resizeMode: 'cover',
         height: 300,
+        marginHorizontal: -24,
       }}
     />
   );
