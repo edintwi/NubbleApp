@@ -7,6 +7,8 @@ import {FlatList} from 'react-native-gesture-handler';
 import {PostItem, Screen} from '@components';
 import {AppTabScreenProps} from '@routes';
 
+import {HomeHeader} from './components/HomeHeader';
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
   const [postList, setPostList] = useState<Post[]>();
@@ -25,6 +27,7 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
         keyExtractor={item => item.id}
         renderItem={renderItem}
         showsVerticalScrollIndicator={false}
+        ListHeaderComponent={HomeHeader}
       />
     </Screen>
   );
