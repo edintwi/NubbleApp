@@ -3,8 +3,8 @@ import {KeyboardAvoidingView, Platform} from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
 
-import {Box, TouchableOpacityBox, Icon, Text, BoxProps} from '@components';
-import {useAppTheme, useAppSafeArea} from '@hooks';
+import {Box, BoxProps, Icon, Text, TouchableOpacityBox} from '@components';
+import {useAppSafeArea, useAppTheme} from '@hooks';
 
 import {ScrollViewContainer, ViewContainer} from './components/ScreenContainer';
 
@@ -12,6 +12,7 @@ interface ScreenProps extends BoxProps {
   children: React.ReactNode;
   canGoback?: boolean;
   scrollable?: boolean;
+  title?: string;
 }
 
 export function Screen({
