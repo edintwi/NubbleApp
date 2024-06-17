@@ -1,15 +1,25 @@
 import React from 'react';
 
-import { Box, Screen, Text } from '@components';
-import { AppScreenProps } from '@routes';
+import {Screen} from '@components';
+import {usePostCommentList} from '@domain';
+import {AppScreenProps} from '@routes';
+import {FlatList, ListRenderItemInfo} from 'react-native';
+import {PostComment} from 'src/domain/PostComment/postCommentTypes';
+import PostCommentItem from './components/PostCommentItem';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function PostCommentScreen(props: AppScreenProps<'PostCommentScreen'>) {
+export function PostCommentScreen({
+  route,
+}: AppScreenProps<'PostCommentScreen'>) {
+  const postId = route.params.postId;
+  const {list} = usePostCommentList(postId);
+
+  function renderItem({item}: ListRenderItemInfo<PostComment>) {
+    return <PostCommentItem postComment={item} />;
+  }
   return (
     <Screen canGoback title="Comentários">
-      <Box>
-        <Text>Comentários</Text>
-      </Box>
+      <FlatList data={list} renderItem={renderItem} />
     </Screen>
   );
 }

@@ -11,7 +11,7 @@ export type AppStackRootParamList = {
   AppTabNavigator: NavigatorScreenParams<AppTabBottomTabParamList>;
   SettingsScreen: undefined;
   PostCommentScreen: {
-    postId: string;
+    postId: number;
   };
 };
 const Stack = createStackNavigator<AppStackRootParamList>();
