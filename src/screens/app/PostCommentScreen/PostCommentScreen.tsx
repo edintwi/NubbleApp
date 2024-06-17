@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Screen} from '@components';
+import {Box, Screen, TextMessage} from '@components';
 import {usePostCommentList} from '@domain';
 import {useAppSafeArea} from '@hooks';
 import {AppScreenProps} from '@routes';
@@ -16,23 +16,36 @@ export function PostCommentScreen({
   const postId = route.params.postId;
   const {list, fetchNextPage, hasNextPage} = usePostCommentList(postId);
 
+  const [message, setMessage] = React.useState('');
+
   const {bottom} = useAppSafeArea();
   function renderItem({item}: ListRenderItemInfo<PostComment>) {
     return <PostCommentItem postComment={item} />;
   }
+
+  function onPressSend() {}
   return (
-    <Screen canGoback title="Comentários">
-      <FlatList
-        data={list}
-        renderItem={renderItem}
-        contentContainerStyle={{paddingBottom: bottom}}
-        ListFooterComponent={
-          <PostCommentBottom
-            hasNextPage={hasNextPage}
-            fetchNextPage={fetchNextPage}
-          />
-        }
-      />
+    <Screen flex={1} title="Comentários" canGoback>
+      <Box flex={1} justifyContent="space-between">
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={list}
+          renderItem={renderItem}
+          contentContainerStyle={{paddingBottom: bottom}}
+          ListFooterComponent={
+            <PostCommentBottom
+              hasNextPage={hasNextPage}
+              fetchNextPage={fetchNextPage}
+            />
+          }
+        />
+        <TextMessage
+          placeholder="Adicione um comentário"
+          onPressSend={onPressSend}
+          value={message}
+          onChangeText={setMessage}
+        />
+      </Box>
     </Screen>
   );
 }
