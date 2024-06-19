@@ -12,6 +12,7 @@ export type AppStackRootParamList = {
   SettingsScreen: undefined;
   PostCommentScreen: {
     postId: number;
+    postAuthorId: number;
   };
 };
 const Stack = createStackNavigator<AppStackRootParamList>();
