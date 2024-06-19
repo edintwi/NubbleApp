@@ -1,79 +1,46 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
-# Getting Started
+# Nubble App
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+O Nubble App é uma plataforma de socialização desenvolvida com tecnologias com React Native, TypeScript, React Native CLI e shopify/restyle. Projetado para proporcionar uma experiência envolvente, o aplicativo permite que os usuários se conectem e compartilhem suas vidas de maneira intuitiva.
 
-## Step 1: Start the Metro Server
+# Principais Funcionalidades:
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+- Autenticação de Usuário: Criação de contas seguras com login e logout garantidos, assegurando acesso apenas a usuários autorizados.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+- Personalização de Perfil: Os usuários podem expressar sua individualidade adicionando fotos de perfil, biografias e outros detalhes pessoais.
 
-```bash
-# using npm
-npm start
+- Feed de Notícias: Mantenha-se atualizado com um feed dinâmico onde é possível explorar e navegar por postagens compartilhadas por outros usuários.
 
-# OR using Yarn
-yarn start
-```
+- Criação de Postagens: Liberdade para criar conteúdo próprio através de fotos, vídeos ou texto, permitindo que os usuários compartilhem suas experiências e criatividade.
 
-## Step 2: Start your Application
+- Interatividade: Engaje-se com outras postagens através de curtidas e comentários, facilitando a interação e o compartilhamento de opiniões.
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+- Seguir e Não Seguir: Construa sua comunidade ao seguir outros usuários para receber atualizações de suas atividades. A opção de não seguir permite uma experiência de usuário personalizada.
 
-### For Android
+
+## Instalação
+
+Primeiramente clone o projeto:
 
 ```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
+  git clone https://github.com/edintwi/NubbleApp
 ```
 
-### For iOS
+Instale as dependencias
 
 ```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+  npm i
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+Rode o projeto 
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+```bash
+  npx react-native start
+```
 
-## Step 3: Modifying your App
+Selecione o dispositivo de sua preferencia ( Android ou IOS )
 
-Now that you have successfully run the app, let's modify it.
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+## Referencias
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+O projeto foi feito como parte do curso @Coffstack
