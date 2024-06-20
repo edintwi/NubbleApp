@@ -18,7 +18,7 @@ export function ToastContent({toast}: Props) {
     return null;
   }
   return (
-    <Box {...$boxStyle} style={[{[position]: 100, ...$shadowProps}]}>
+    <Box {...$boxStyle} style={$shadowProps}>
       <Icon {...mapTypeToIcon[type]} />
 
       <Text style={{flexShrink: 1}} ml="s16" bold preset="paragraphMedium">
