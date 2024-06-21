@@ -6,10 +6,10 @@ import {
 } from '@react-navigation/bottom-tabs';
 
 import {
-  HomeScreen,
   FavoriteScreen,
-  NewPostScreen,
+  HomeScreen,
   MyProfileScreen,
+  NewPostScreen,
 } from '@screens';
 
 import {AppTabBar} from './AppTabBar';

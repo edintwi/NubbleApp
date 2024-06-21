@@ -7,3 +7,5 @@ export * from './PostComment/postCommentService';
 export * from './PostComment/useCases/index';
 export * from './PostComment/useCases/usePostCommentCreate';
 export * from './PostComment/useCases/usePostCommentList';
+export * from './User/index';
+export * from './User/useCases/index';
