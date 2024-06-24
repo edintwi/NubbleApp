@@ -15,7 +15,7 @@ import {HomeHeader} from './components/HomeHeader';
 export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
   const {
     list: postList,
-    error,
+    isError,
     isLoading,
     refresh,
     fetchNextPage,
@@ -33,7 +33,7 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
       <FlatList
         ref={flatListRef}
         data={postList}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.id.toString()}
         renderItem={renderItem}
         contentContainerStyle={{flex: postList?.length === 0 ? 1 : undefined}}
         showsVerticalScrollIndicator={false}
@@ -45,7 +45,7 @@ export function HomeScreen({navigation}: AppTabScreenProps<'HomeScreen'>) {
         refreshing={isLoading}
         ListHeaderComponent={HomeHeader}
         ListEmptyComponent={
-          <HomeEmpty loading={isLoading} error={error} refetch={refresh} />
+          <HomeEmpty loading={isLoading} error={isError} refetch={refresh} />
         }
       />
     </Screen>
