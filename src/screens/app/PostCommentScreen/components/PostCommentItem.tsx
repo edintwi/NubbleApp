@@ -7,24 +7,22 @@ import {Alert, Pressable} from 'react-native';
 import {PostComment} from 'src/domain/PostComment/postCommentTypes';
 
 interface Props {
+  postId: number;
   postComment: PostComment;
   userId: number;
   postAuthorId: number;
-  onRemoveComment: () => void;
 }
 export default function PostCommentItem({
+  postId,
   postComment,
-  onRemoveComment,
   userId,
   postAuthorId,
 }: Props) {
   const {showToast} = useToastService();
-  const {mutate} = usePostCommentRemove({
+  const {mutate} = usePostCommentRemove(postId, {
     onSucess: () => {
-      onRemoveComment();
       showToast({
         message: 'Comentário deletado',
-        duration: 2000,
         position: 'bottom',
       });
     },
@@ -40,7 +38,7 @@ export default function PostCommentItem({
     Alert.alert('Deseja excluir o cometário?', 'Pressione confirmar', [
       {
         text: 'Confirmar',
-        onPress: () => mutate(postComment.id),
+        onPress: () => mutate({postCommentId: postComment.id}),
       },
       {
         text: 'Cancelar',
