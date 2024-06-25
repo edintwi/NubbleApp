@@ -1,21 +1,32 @@
 import React from 'react';
-import {Alert} from 'react-native';
 
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useForm} from 'react-hook-form';
 
 import {
   Button,
+  FormPasswordInput,
+  FormTextInput,
   Screen,
   Text,
-  FormTextInput,
-  FormPasswordInput,
 } from '@components';
 import {AuthScreenProps} from '@routes';
 
+import {useAuthSignIn} from '@domain';
+import {useToastService} from '@services';
 import {LoginSchema, loginSchema} from './loginSchema';
 
 export function LoginScreen({navigation}: AuthScreenProps<'LoginScreen'>) {
+  const {showToast} = useToastService();
+  const {isLoading, singIn} = useAuthSignIn({
+    onError: message =>
+      showToast({
+        message,
+        position: 'bottom',
+        type: 'error',
+      }),
+  });
+
   const {control, formState, handleSubmit} = useForm<LoginSchema>({
     defaultValues: {
       email: '',
@@ -26,7 +37,9 @@ export function LoginScreen({navigation}: AuthScreenProps<'LoginScreen'>) {
   });
 
   function submitForm({email, password}: LoginSchema) {
-    Alert.alert(email, password);
+    //Alert.alert(email, password);
+
+    singIn({email, password});
   }
   function navigateToSignUpScreen() {
     navigation.navigate('SignUpScreen');
@@ -69,6 +82,7 @@ export function LoginScreen({navigation}: AuthScreenProps<'LoginScreen'>) {
         disabled={!formState.isValid}
         marginTop="s48"
         title="Entrar"
+        loading={isLoading}
         onPress={handleSubmit(submitForm)}
       />
       <Button

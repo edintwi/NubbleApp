@@ -1,4 +1,5 @@
 export * from '../infra/hooks/usePaginatedList';
+export * from './Auth/index';
 export * from './Auth/userUser';
 export * from './Post/postService';
 export * from './Post/postTypes';
