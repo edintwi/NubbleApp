@@ -4,7 +4,6 @@ import {ThemeProvider} from '@shopify/restyle';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 import {Toast} from '@components';
-import {ToastProvider} from '@services';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {Router} from './src/routes/Routes';
 import {theme} from './src/theme/theme';
@@ -16,10 +15,10 @@ function App(): JSX.Element {
     <QueryClientProvider client={queryClient}>
       <SafeAreaProvider>
         <ThemeProvider theme={theme}>
-          <ToastProvider>
-            <Router />
-            <Toast />
-          </ToastProvider>
+          {/* <ToastProvider> */}
+          <Router />
+          <Toast />
+          {/* </ToastProvider> */}
         </ThemeProvider>
       </SafeAreaProvider>
     </QueryClientProvider>
