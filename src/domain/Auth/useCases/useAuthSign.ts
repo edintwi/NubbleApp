@@ -16,7 +16,6 @@ export function useAuthSignIn(options?: Options<AuthCredentials>) {
     retry: false,
     onSuccess: authCredentials => {
       saveCredentials(authCredentials);
-      authService.updateToken(authCredentials.token);
     },
     onError: error => {
       if (options?.onError) {
