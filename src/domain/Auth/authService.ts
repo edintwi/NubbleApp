@@ -1,5 +1,5 @@
 import {api} from '@api';
-import {AuthCredentials} from './AuthTypes';
+import {AuthCredentials, SignUpData} from './AuthTypes';
 import {authAdapter} from './authAdapter';
 import {authApi} from './authApi';
 
@@ -27,9 +27,13 @@ function removeToken() {
   api.defaults.headers.common.Authorization = null;
 }
 
+async function signUp(signUpData: SignUpData): Promise<void> {
+  await authApi.signUp(signUpData);
+}
 export const authService = {
   signIn,
   signOut,
+  signUp,
   updateToken,
   removeToken,
 };

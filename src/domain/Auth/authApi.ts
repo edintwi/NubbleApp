@@ -1,5 +1,6 @@
 import {api} from '@api';
-import {AuthCredentialsAPI} from './AuthTypes';
+import {UserAPI} from '../User';
+import {AuthCredentialsAPI, SignUpDataAPI} from './AuthTypes';
 
 const PATH = '/login';
 
@@ -21,7 +22,12 @@ async function signOut(): Promise<string> {
   return response.data;
 }
 
+async function signUp(data: SignUpDataAPI): Promise<UserAPI> {
+  const response = await api.post<UserAPI>('register', data);
+  return response.data;
+}
 export const authApi = {
   signIn,
   signOut,
+  signUp,
 };

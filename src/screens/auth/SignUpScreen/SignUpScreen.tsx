@@ -4,23 +4,37 @@ import {zodResolver} from '@hookform/resolvers/zod';
 import {useForm} from 'react-hook-form';
 
 import {
+  Button,
+  FormPasswordInput,
+  FormTextInput,
   Screen,
   Text,
-  Button,
-  FormTextInput,
-  FormPasswordInput,
 } from '@components';
 import {useResetNavigationSucess} from '@hooks';
 import {AuthScreenProps} from '@routes';
 
+import {useAuthSignUp} from '@domain';
 import {SignUpSchema, signUpSchema} from './signUpSchema';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
+  const {isLoading, signUp} = useAuthSignUp({
+    onSucess: () => {
+      reset({
+        title: 'Sua conta foi criada com sucesso!',
+        description: 'Agora é so fazer login na nossa plataforma',
+        icon: {
+          name: 'checkRoundIcon',
+          color: 'greenSuccess',
+        },
+      });
+    },
+  });
   const {control, formState, handleSubmit} = useForm<SignUpSchema>({
     defaultValues: {
-      userName: '',
-      fullName: '',
+      username: '',
+      firstName: '',
+      lastName: '',
       email: '',
       password: '',
     },
@@ -32,14 +46,7 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   function submitForm(formValues: SignUpSchema) {
-    reset({
-      title: 'Sua conta foi criada com sucesso!',
-      description: 'Agora é so fazer login na nossa plataforma',
-      icon: {
-        name: 'checkRoundIcon',
-        color: 'greenSuccess',
-      },
-    });
+    signUp(formValues);
   }
   return (
     <Screen canGoback scrollable>
@@ -48,16 +55,23 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
       </Text>
       <FormTextInput
         control={control}
-        name="userName"
+        name="username"
         label="Seu username"
         placeholder="@"
         boxProps={{mb: 's20'}}
       />
       <FormTextInput
         control={control}
-        name="fullName"
-        label="Nome completo"
-        placeholder="Digite seu nome completo"
+        name="firstName"
+        label="Primeiro nome"
+        placeholder="Digite seu nome"
+        boxProps={{mb: 's20'}}
+      />
+      <FormTextInput
+        control={control}
+        name="lastName"
+        label="Sobrenome"
+        placeholder="Digite seu sobrenome"
         boxProps={{mb: 's20'}}
       />
       <FormTextInput
@@ -78,6 +92,7 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
         disabled={!formState.isValid}
         title="Criar minha conta"
         preset="primary"
+        loading={isLoading}
         onPress={handleSubmit(submitForm)}
       />
     </Screen>
