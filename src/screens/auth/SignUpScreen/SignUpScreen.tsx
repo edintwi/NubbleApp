@@ -14,7 +14,7 @@ import {
 import {useResetNavigationSucess} from '@hooks';
 import {AuthScreenProps} from '@routes';
 
-import {useAuthIsUserNameAvailable, useAuthSignUp} from '@domain';
+import {useAuthIsUsernameAvailable, useAuthSignUp} from '@domain';
 import {SignUpSchema, signUpSchema} from './signUpSchema';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -54,7 +54,7 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
   const username = watch('username');
   const usernameState = getFieldState('username');
   const usernameIsValid = !usernameState.invalid && usernameState.isDirty;
-  const usernameQuery = useAuthIsUserNameAvailable({
+  const usernameQuery = useAuthIsUsernameAvailable({
     username,
     enabled: usernameIsValid,
   });
