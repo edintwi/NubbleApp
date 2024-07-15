@@ -32,17 +32,18 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
     },
   });
 
-  const {control, formState, handleSubmit, watch} = useForm<SignUpSchema>({
-    defaultValues: {
-      username: '',
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-    },
-    mode: 'onChange',
-    resolver: zodResolver(signUpSchema),
-  });
+  const {control, formState, handleSubmit, watch, getFieldState} =
+    useForm<SignUpSchema>({
+      defaultValues: {
+        username: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+      },
+      mode: 'onChange',
+      resolver: zodResolver(signUpSchema),
+    });
 
   const {reset} = useResetNavigationSucess();
 
@@ -51,7 +52,12 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
     signUp(formValues);
   }
   const username = watch('username');
-  const usernameQuery = useAuthIsUserNameAvailable({username});
+  const usernameState = getFieldState('username');
+  const usernameIsValid = !usernameState.invalid && usernameState.isDirty;
+  const usernameQuery = useAuthIsUserNameAvailable({
+    username,
+    enabled: usernameIsValid,
+  });
   return (
     <Screen canGoback scrollable>
       <Text preset="headingLarge" mb="s32">
@@ -61,6 +67,9 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
         control={control}
         name="username"
         label="Seu username"
+        errorMsg={
+          usernameQuery.isUnavailable ? 'Username insdísponivel' : undefined
+        }
         placeholder="@"
         boxProps={{mb: 's20'}}
         RightComponent={
@@ -98,7 +107,11 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
         boxProps={{mb: 's48'}}
       />
       <Button
-        disabled={!formState.isValid}
+        disabled={
+          !formState.isValid ||
+          usernameQuery.isFetching ||
+          usernameQuery.isUnavailable
+        }
         title="Criar minha conta"
         preset="primary"
         loading={isLoading}
