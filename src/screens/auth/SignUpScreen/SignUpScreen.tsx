@@ -4,6 +4,7 @@ import {zodResolver} from '@hookform/resolvers/zod';
 import {useForm} from 'react-hook-form';
 
 import {
+  ActivityIndicator,
   Button,
   FormPasswordInput,
   FormTextInput,
@@ -13,7 +14,7 @@ import {
 import {useResetNavigationSucess} from '@hooks';
 import {AuthScreenProps} from '@routes';
 
-import {useAuthSignUp} from '@domain';
+import {useAuthIsUserNameAvailable, useAuthSignUp} from '@domain';
 import {SignUpSchema, signUpSchema} from './signUpSchema';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -30,7 +31,8 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
       });
     },
   });
-  const {control, formState, handleSubmit} = useForm<SignUpSchema>({
+
+  const {control, formState, handleSubmit, watch} = useForm<SignUpSchema>({
     defaultValues: {
       username: '',
       firstName: '',
@@ -48,6 +50,8 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
   function submitForm(formValues: SignUpSchema) {
     signUp(formValues);
   }
+  const username = watch('username');
+  const usernameQuery = useAuthIsUserNameAvailable({username});
   return (
     <Screen canGoback scrollable>
       <Text preset="headingLarge" mb="s32">
@@ -59,6 +63,11 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
         label="Seu username"
         placeholder="@"
         boxProps={{mb: 's20'}}
+        RightComponent={
+          usernameQuery.isFetching ? (
+            <ActivityIndicator size={'small'} />
+          ) : undefined
+        }
       />
       <FormTextInput
         control={control}

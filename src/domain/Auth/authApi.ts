@@ -1,6 +1,10 @@
 import {api} from '@api';
 import {UserAPI} from '../User';
-import {AuthCredentialsAPI, SignUpDataAPI} from './AuthTypes';
+import {
+  AuthCredentialsAPI,
+  FieldIsAvaibleAPI,
+  SignUpDataAPI,
+} from './AuthTypes';
 
 const PATH = '/login';
 
@@ -26,8 +30,30 @@ async function signUp(data: SignUpDataAPI): Promise<UserAPI> {
   const response = await api.post<UserAPI>('register', data);
   return response.data;
 }
+
+async function isUserNameAvailable(params: {
+  username: string;
+}): Promise<FieldIsAvaibleAPI> {
+  const response = await api.get<FieldIsAvaibleAPI>('validate-username', {
+    params,
+  });
+
+  return response.data;
+}
+
+async function isEmailAvailable(params: {
+  email: string;
+}): Promise<FieldIsAvaibleAPI> {
+  const response = await api.get<FieldIsAvaibleAPI>('validate-email', {
+    params,
+  });
+
+  return response.data;
+}
 export const authApi = {
   signIn,
   signOut,
   signUp,
+  isEmailAvailable,
+  isUserNameAvailable,
 };

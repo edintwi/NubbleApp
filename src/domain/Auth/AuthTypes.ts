@@ -33,3 +33,8 @@ export interface SignUpData {
   email: string;
   password: string;
 }
+
+export interface FieldIsAvaibleAPI {
+  message: string; // "email is not available",
+  isAvailable: boolean; //false
+}
