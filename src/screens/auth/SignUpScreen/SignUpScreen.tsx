@@ -14,8 +14,9 @@ import {
 import {useResetNavigationSucess} from '@hooks';
 import {AuthScreenProps} from '@routes';
 
-import {useAuthIsUsernameAvailable, useAuthSignUp} from '@domain';
+import {useAuthSignUp} from '@domain';
 import {SignUpSchema, signUpSchema} from './signUpSchema';
+import {useAsyncValidation} from './useAsyncValidation';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
@@ -51,12 +52,9 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
   function submitForm(formValues: SignUpSchema) {
     signUp(formValues);
   }
-  const username = watch('username');
-  const usernameState = getFieldState('username');
-  const usernameIsValid = !usernameState.invalid && usernameState.isDirty;
-  const usernameQuery = useAuthIsUsernameAvailable({
-    username,
-    enabled: usernameIsValid,
+  const {usernameValidation, emailValidation} = useAsyncValidation({
+    watch,
+    getFieldState,
   });
   return (
     <Screen canGoback scrollable>
@@ -67,13 +65,11 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
         control={control}
         name="username"
         label="Seu username"
-        errorMsg={
-          usernameQuery.isUnavailable ? 'Username insdísponivel' : undefined
-        }
+        errorMsg={usernameValidation.errorMessage}
         placeholder="@"
         boxProps={{mb: 's20'}}
         RightComponent={
-          usernameQuery.isFetching ? (
+          usernameValidation.isFetching ? (
             <ActivityIndicator size={'small'} />
           ) : undefined
         }
@@ -94,7 +90,13 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
       />
       <FormTextInput
         control={control}
+        errorMsg={emailValidation.errorMessage}
         name="email"
+        RightComponent={
+          emailValidation.isFetching ? (
+            <ActivityIndicator size={'small'} />
+          ) : undefined
+        }
         label="E-mail"
         placeholder="Digite seu e-mail"
         boxProps={{mb: 's20'}}
@@ -109,8 +111,8 @@ export function SignUpScreen({navigation}: AuthScreenProps<'SignUpScreen'>) {
       <Button
         disabled={
           !formState.isValid ||
-          usernameQuery.isFetching ||
-          usernameQuery.isUnavailable
+          usernameValidation.notReady ||
+          emailValidation.notReady
         }
         title="Criar minha conta"
         preset="primary"
